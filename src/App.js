@@ -1,23 +1,30 @@
-import logo from './logo.svg';
 import './App.css';
+import Home from './view/home/Home';
+import CadComrpomisso from './view/cadCompromisso/CadComrpomisso';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route
+} from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <Routes >
+          <Route path="/home" element={<Home />} />
+          <Route path="invoices/:invoiceId" element={<CadComrpomisso />} />
+          <Route path="/" element={<Home />} />
+          <Route
+            path="*"
+            element={
+              <main style={{ padding: "1rem" }}>
+                <p>Pagina não encontrada!</p>
+              </main>
+            }
+          />
+        </Routes>
+      </Router>
     </div>
   );
 }
