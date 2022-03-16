@@ -29,29 +29,23 @@ const CadCompromisso = (props) => {
     };
 
     const lancaCompromisso = () => {
-        console.log('lancaCompromisso type', type, compromissos);
         if (type === 'I') {
-            console.log('lancaCompromisso I', compInterno);
             props.insertCompromisso(compInterno);
         }
         if (type === 'U') {
-            console.log('lancaCompromisso U', compInterno);
             props.updateCompromisso(compInterno);
         }
-
-        console.log('lancaCompromisso 2', type, compromissos);
         setComp(newCompromisso);
-        console.log('newCompromisso', newCompromisso);
     }
 
     useEffect(() => {
-        let compromissoEdit = compromissos.find(comp => comp.id === parseInt(params.invoiceId)) || {};
-        if (compromissoEdit) {
-            setType('U');
+        if (parseInt(params.invoiceId) === 0) {
+            setType('I');
         } else {
-            setType('I')
+            const compromissoEdit = compromissos.find(comp => comp.id === parseInt(params.invoiceId)) || {};
+            setComp(compromissoEdit);
+            setType('U')
         }
-        setComp(compromissoEdit);
     }, [compromissos, params.invoiceId])
 
     return (
@@ -73,12 +67,14 @@ const CadCompromisso = (props) => {
                     type="text"
                     onChange={handleChange("tipo")}
                 />
-                {/* Importante:<input
+                Importante:<input
                     type='checkbox'
-                    value={compInterno.importante}
                     onChange={handleChange("importante")}
-                    checked={compInterno.importante}
-                /> */}
+                    id='importante'
+                    value={true}
+                    name='labelimportante'
+                // ref={n => { setRefere(n) }}
+                />
                 dia:<input
                     type="datetime-local"
                     value={compInterno.data}

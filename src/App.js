@@ -1,6 +1,7 @@
 import './App.css';
 import Home from './view/home/Home';
 import CadComrpomisso from './view/cadCompromisso/CadComrpomisso';
+import CadCompromissoForm from './view/cadCompromissoForm/CadCompromissoForm';
 import {
   BrowserRouter as Router,
   Routes,
@@ -14,6 +15,7 @@ function App() {
         <Routes >
           <Route path="/home" element={<Home />} />
           <Route path="invoices/:invoiceId" element={<CadComrpomisso />} />
+          <Route path="compromissos/:compromissoId" element={<CadCompromissoForm />} />
           <Route path="/" element={<Home />} />
           <Route
             path="*"

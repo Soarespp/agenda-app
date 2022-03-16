@@ -6,15 +6,46 @@
 }
 .CardCompromissos .DtCard{
     display: block;
-    background-color: chocolate;
+    /* background-color: #bfdbf7; */
+    background-color: coral;
     align-items: center;
     align-content: center;
     text-align: center;
-    width: 20%;
+    width: 30%;
     border: 3px groove rgb(118, 200, 147);
     border-radius: 4px;
 }
 
 .CardCompromissos .ContainerDados{
     background-color: cornflowerblue;
+    border: 3px groove rgb(118, 200, 147);
+    border-radius: 4px;
+    width: 70%;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+}
+
+.CardCompromissos .ContainerDados .Header{
+    background-color: #bfdbf7;
+    grid-column-start: 1;
+    grid-column-end: 5;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    font-size: 20px;
+}
+
+.CardCompromissos .ContainerDados .Dados-config{
+    background-color: #e1e5f2;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 4;
+}
+
+.CardCompromissos .ContainerDados .Dados-evento{
+    background-color: #e1e5f2;
+    grid-column-start: 3;
+    grid-column-end: 5;
+    grid-row-start: 2;
+    grid-row-end: 4;
 }

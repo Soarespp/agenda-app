@@ -9,30 +9,42 @@ import {
 
 var initialState = {
     filter: "",
+    state: "",
     compromissos: [
         {
             id: 1,
-            nome: 'Corta cabelo',
-            data: '2021-05-27T16:35',
+            compromisso: 'Corta cabelo',
+            nameLocal: 'Corta cabelo',
+            dataEvento: '2021-05-27T16:35',
             local: 'beira mar',
             tipo: 'consulta',
-            importante: true
+            importante: false,
         },
         {
             id: 2,
-            nome: 'Fazer mudanca',
-            data: '2021-02-17T08:00',
+            compromisso: 'Fazer mundaça',
+            nameLocal: 'Fazer mudanca',
+            dataEvento: '2021-02-17T08:00',
             local: 'av circular centro',
             tipo: 'viagem',
-            importante: true
+            importante: false,
+            andress: {
+                cep: '88052-600',
+                cidade: 'Florianopolis',
+                bairro: 'Vargem Grande',
+                rua: 'cristovão machado campos',
+                numero: '461',
+                complemento: 'B4 Apt 403',
+            }
         },
         {
             id: 3,
-            nome: 'Garden',
-            data: '2022-01-16T06:45',
+            compromisso: 'Garden',
+            nameLocal: 'RS',
+            dataEvento: '2022-01-16T06:45',
             local: 'multirão',
             tipo: 'compras',
-            importante: true
+            importante: false,
         }
     ],
 };
@@ -41,14 +53,16 @@ export default function (state = initialState, action) {
     console.log('reducer', action, state.payload)
     switch (action.type) {
         case NEW_COMPROMISSO:
+            console.log('NEW_COMPROMISSO', state.payload)
             return {
                 ...state,
                 compromissos: [...state.compromissos, action.payload]
             }
         case UPDATE_COMPROMISSO:
+            console.log('UPDATE_COMPROMISSO', state.compromissos, action.payload)
             var lstCompromissos = [...state.compromissos];
             lstCompromissos.forEach((item, idx) => {
-                if (item.idx === action.payload.idx) {
+                if (item.id === action.payload.id) {
                     lstCompromissos[idx] = action.payload
                 }
             });
@@ -58,13 +72,11 @@ export default function (state = initialState, action) {
             }
         case DELETE_COMPROMISSO:
             var lstComp = [...state.compromissos];
-            console.log('lstComp before', lstComp)
             lstComp.forEach((item, idx) => {
                 if (item.id === action.payload.id) {
                     lstComp.splice(idx, 1);
                 }
             });
-            console.log('lstComp aft', lstComp)
             return {
                 ...state,
                 compromissos: lstComp

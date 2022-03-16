@@ -21,15 +21,15 @@ const getDayDesc = (dt) => {
 
 const CardCompromissos = (props) => {
     const { compromisso } = props;
+    console.log('compromisso.andress', compromisso.compromisso, compromisso.andress)
     return (
         <div className='CardCompromissos'>
             <div className='DtCard'>
-                <div>{String(new Date(compromisso.data).getDate())}</div>
-                <div>{getMonthDesc(compromisso.data)}.
-                    {String(new Date(compromisso.data).getFullYear())}
+                <div style={{ fontSize: '70px' }}><b>{String(new Date(compromisso.dataEvento).getDate())}</b></div>
+                <div style={{}}>{getMonthDesc(compromisso.dataEvento)}.
+                    {String(new Date(compromisso.dataEvento).getFullYear())}
                 </div>
-                <div>{compromisso.tipo}</div>
-                {/* <div>{compromisso.data}</div> */}
+                <div style={{ color: 'blue' }}>{compromisso.tipo}</div>
                 {/* <input
                     type="datetime-local"
                     value={compromisso.data}
@@ -38,22 +38,41 @@ const CardCompromissos = (props) => {
                 /> */}
             </div>
             <div className='ContainerDados'>
-                <div>{compromisso.nome}</div>
-                <div style={{ display: 'flex', padding: '3px' }}>
-                    <div style={{ display: 'flex', padding: '3px' }}>{getDayDesc(compromisso.data)}</div>
-                    <div style={{ display: 'flex', padding: '3px' }}>{String(new Date(compromisso.data).toTimeString()).substring(0, 8)}</div>
+                <div className='Header'>{compromisso.nameLocal}</div>
+                <div className='Dados-config'>
+                    <div style={{ display: 'flex', padding: '3px' }}>
+                        <div style={{ display: 'flex', padding: '3px', fontSize: '25px' }}>{getDayDesc(compromisso.dataEvento)}</div>
+                        <div style={{ display: 'flex', padding: '3px' }}>{String(new Date(compromisso.dataEvento).toTimeString()).substring(0, 8)}</div>
+                    </div>
+                    <div>
+
+                        <span>
+                            {(compromisso.andress) ? <div>
+                                {compromisso.andress.rua},
+                                <div>{compromisso.andress.complemento},
+                                    n.{compromisso.andress.numero},
+                                    {compromisso.andress.bairro},
+                                    {compromisso.andress.cidade}
+                                </div>
+                            </div> : null}
+                        </span>
+                    </div>
+                    <div style={{ display: 'flex' }}>
+                        <Link
+                            to={`/compromissos/${compromisso.id}`}
+                            key={compromisso.id}
+                        >
+                            <button>Editar Form</button>
+                        </Link>
+                        <button onClick={() => props.deleteCompromisso(compromisso)}>Delete</button>
+                    </div>
                 </div>
-                <div>{compromisso.local}</div>
-                {(compromisso.importante) ? <p> Importante</p> : <p> not</p>
-                }
-                <div style={{ display: 'flex' }}>
-                    <Link
-                        to={`/invoices/${compromisso.id}`}
-                        key={compromisso.id}
-                    >
-                        <button>Editar</button>
-                    </Link>
-                    <button onClick={() => props.deleteCompromisso(compromisso)}>Delete</button>
+                <div className='Dados-evento'>
+                    <div>
+                        <h1>{compromisso.compromisso}</h1>
+                    </div>
+                    {(compromisso.importante) ? <p> Importante</p> : null
+                    }
                 </div>
             </div>
         </div >

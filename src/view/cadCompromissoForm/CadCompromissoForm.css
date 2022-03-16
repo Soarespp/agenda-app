@@ -1,0 +1,15 @@
+.CadCompromissoForm{
+    border: 3px groove rgb(133, 140, 248);
+    border-radius: 8px;
+    height: max-content;
+}
+
+.CadCompromissoForm .header{
+    border: 3px groove rgb(135, 168, 146);
+    border-radius: 8px;
+    background-color: rgba(105, 207, 247, 0.397);
+} 
+
+.CadCompromissoForm .body{
+    height: max-content;
+} 

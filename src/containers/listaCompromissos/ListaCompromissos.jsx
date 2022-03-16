@@ -13,7 +13,6 @@ const ListaCompromissos = (props) => {
     lstCompromissos.sort((a, b) => {
         return new Date(a.data) - new Date(b.data) || a.name
     });
-
     return (
         <div className="ListaCompromissos">
             {lstCompromissos.map((compromisso) => (

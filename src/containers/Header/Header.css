@@ -1,0 +1,10 @@
+.Comp-Header {width: 100%;}
+.Comp-Header .Header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 3px;
+    border-bottom: 3px groove rgba(118, 200, 147, 0.836);
+    background-color: #bfdbf7;
+    margin-bottom: 5px;
+}
