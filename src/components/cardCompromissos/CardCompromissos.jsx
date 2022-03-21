@@ -21,7 +21,6 @@ const getDayDesc = (dt) => {
 
 const CardCompromissos = (props) => {
     const { compromisso } = props;
-    console.log('compromisso.andress', compromisso.compromisso, compromisso.andress)
     return (
         <div className='CardCompromissos'>
             <div className='DtCard'>
@@ -40,12 +39,11 @@ const CardCompromissos = (props) => {
             <div className='ContainerDados'>
                 <div className='Header'>{compromisso.nameLocal}</div>
                 <div className='Dados-config'>
-                    <div style={{ display: 'flex', padding: '3px' }}>
+                    <div style={{ display: 'flex', padding: '3px', width: '100%' }}>
                         <div style={{ display: 'flex', padding: '3px', fontSize: '25px' }}>{getDayDesc(compromisso.dataEvento)}</div>
                         <div style={{ display: 'flex', padding: '3px' }}>{String(new Date(compromisso.dataEvento).toTimeString()).substring(0, 8)}</div>
                     </div>
-                    <div>
-
+                    <div style={{ display: 'flex', width: '100%' }}>
                         <span>
                             {(compromisso.andress) ? <div>
                                 {compromisso.andress.rua},
@@ -57,7 +55,9 @@ const CardCompromissos = (props) => {
                             </div> : null}
                         </span>
                     </div>
-                    <div style={{ display: 'flex' }}>
+                    <div style={{
+                        width: '100%', alignItems: 'center', alignContent: 'center', textAlign: 'center'
+                    }}>
                         <Link
                             to={`/compromissos/${compromisso.id}`}
                             key={compromisso.id}

@@ -3,10 +3,15 @@ import { Link } from "react-router-dom";
 import './Header.css';
 import { TitleHeader } from './style.';
 
+import { connect } from "react-redux";
+import { bindActionCreators } from 'redux';
+import * as actionsCompromissos from '../../store/actions/compromissos';
+
 import IconButton from '@mui/material/IconButton';
 import AddCardIcon from '@mui/icons-material/AddCard';
+import VpnKeyIcon from '@mui/icons-material/VpnKey';
 
-const Header = () => {
+const Header = (props) => {
     return (
         <div className='Comp-Header'>
             <div className='Header'>
@@ -25,8 +30,23 @@ const Header = () => {
                         <AddCardIcon style={{ color: "black" }} />
                     </IconButton>
                 </Link>
+                <IconButton style={{ width: "20px", margin: '5px' }} onClick={() => props.loginEspecial(!props.especial)}>
+                    <VpnKeyIcon style={{ color: "black" }} />
+                </IconButton>
             </div>
         </div >
     );
 }
-export default Header;
+
+function mapStateToProps(state) {
+    return {
+        especial: state.dados.especial,
+    };
+}
+
+const mapDispatchToProp = (dispatch) => bindActionCreators(actionsCompromissos, dispatch)
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProp
+)(Header);

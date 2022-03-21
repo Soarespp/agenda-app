@@ -1,57 +1,24 @@
 /* eslint-disable import/no-anonymous-default-export */
 import {
-    NEW_COMPROMISSO,
-    UPDATE_COMPROMISSO,
-    DELETE_COMPROMISSO
+    NEW_COMPROMISSO, UPDATE_COMPROMISSO, DELETE_COMPROMISSO, LOGIN_ESPECIAL, GET_DADOS
 } from '../actions/actionsTypes';
-
-
 
 var initialState = {
     filter: "",
     state: "",
-    compromissos: [
-        {
-            id: 1,
-            compromisso: 'Corta cabelo',
-            nameLocal: 'Corta cabelo',
-            dataEvento: '2021-05-27T16:35',
-            local: 'beira mar',
-            tipo: 'consulta',
-            importante: false,
-        },
-        {
-            id: 2,
-            compromisso: 'Fazer mundaça',
-            nameLocal: 'Fazer mudanca',
-            dataEvento: '2021-02-17T08:00',
-            local: 'av circular centro',
-            tipo: 'viagem',
-            importante: false,
-            andress: {
-                cep: '88052-600',
-                cidade: 'Florianopolis',
-                bairro: 'Vargem Grande',
-                rua: 'cristovão machado campos',
-                numero: '461',
-                complemento: 'B4 Apt 403',
-            }
-        },
-        {
-            id: 3,
-            compromisso: 'Garden',
-            nameLocal: 'RS',
-            dataEvento: '2022-01-16T06:45',
-            local: 'multirão',
-            tipo: 'compras',
-            importante: false,
-        }
-    ],
+    especial: false,
+    compromissos: [],
 };
 
 export default function (state = initialState, action) {
     console.log('reducer', action, state.payload)
     switch (action.type) {
+        case GET_DADOS:
+            console.log(`action.payload`, action.payload)
+            return {
+                ...state,
+                compromissos: action.payload
+            }
         case NEW_COMPROMISSO:
             console.log('NEW_COMPROMISSO', state.payload)
             return {
@@ -80,6 +47,11 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 compromissos: lstComp
+            }
+        case LOGIN_ESPECIAL:
+            return {
+                ...state,
+                especial: action.payload
             }
         default:
             return state

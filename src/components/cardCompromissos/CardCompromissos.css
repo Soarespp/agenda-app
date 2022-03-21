@@ -6,8 +6,7 @@
 }
 .CardCompromissos .DtCard{
     display: block;
-    /* background-color: #bfdbf7; */
-    background-color: coral;
+    background-color: #bfdbf7;
     align-items: center;
     align-content: center;
     text-align: center;
@@ -37,15 +36,16 @@
 .CardCompromissos .ContainerDados .Dados-config{
     background-color: #e1e5f2;
     grid-column-start: 1;
-    grid-column-end: 3;
+    grid-column-end: 5;
     grid-row-start: 2;
     grid-row-end: 4;
+    display: inline;
 }
 
 .CardCompromissos .ContainerDados .Dados-evento{
     background-color: #e1e5f2;
-    grid-column-start: 3;
+    grid-column-start: 1;
     grid-column-end: 5;
-    grid-row-start: 2;
-    grid-row-end: 4;
+    grid-row-start: 4;
+    grid-row-end: 5;
 }
