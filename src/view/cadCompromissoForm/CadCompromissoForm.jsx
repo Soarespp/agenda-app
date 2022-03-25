@@ -106,6 +106,7 @@ const CadCompromissoForm = (props) => {
                     Tipo:<Input name="tipo" />
                     Nome Local:<Input name="nameLocal" />
                     Importante:<Input type="checkbox" id="subscribeNews" name="importante" />
+                    Especial:<Input type="checkbox" id="subscribeNews" name="especial" />
                     <label for="subscribeNews">Subscribe to newsletter?</label>
                     dia:<Input
                         type="datetime-local"

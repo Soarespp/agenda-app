@@ -5,28 +5,71 @@ import {
 import api from '../../service/Api';
 
 
-export function insertCompromisso(newCompromisso) {
+export async function insertCompromisso(newCompromisso) {
     console.log('insertCompromisso', newCompromisso)
-    return {
-        type: NEW_COMPROMISSO,
-        payload: newCompromisso
+
+    const result = await api
+        .post('/agenda', newCompromisso)
+        .then(result => {
+            return result
+        })
+        .catch(err => {
+            // trata se alguma das promises falhar
+            console.error('Failed post product', err);
+        });
+
+    if (!result.data.error) {
+        return {
+            type: NEW_COMPROMISSO,
+            payload: newCompromisso
+        }
     }
+
+
 }
 
-export function updateCompromisso(updCompromisso) {
+export async function updateCompromisso(updCompromisso) {
     console.log('updateCompromisso', updCompromisso)
-    return {
-        type: UPDATE_COMPROMISSO,
-        payload: updCompromisso
+
+    const result = await api
+        .put('/agenda', updCompromisso)
+        .then(result => {
+            return result
+        })
+        .catch(err => {
+            console.error('Failed alterar produto', err);
+        });
+
+
+    if (!result.data.error) {
+        return {
+            type: UPDATE_COMPROMISSO,
+            payload: updCompromisso
+        }
     }
+
+
 }
 
-export function deleteCompromisso(delCompromisso) {
+export async function deleteCompromisso(delCompromisso) {
     console.log('deleteCompromisso', delCompromisso)
-    return {
-        type: DELETE_COMPROMISSO,
-        payload: delCompromisso
+
+    const result = await api
+        .delete('/agenda', { data: { id: delCompromisso.id } })
+        .then(result => {
+            return result
+        })
+        .catch(err => {
+            console.error('Failed deletar produto', err);
+        });
+
+    if (!result.data.error) {
+        return {
+            type: DELETE_COMPROMISSO,
+            payload: delCompromisso
+        }
     }
+
 }
 
 export function loginEspecial(loginEspecial) {
