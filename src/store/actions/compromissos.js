@@ -30,7 +30,6 @@ export async function insertCompromisso(newCompromisso) {
 
 export async function updateCompromisso(updCompromisso) {
     console.log('updateCompromisso', updCompromisso)
-
     const result = await api
         .put('/agenda', updCompromisso)
         .then(result => {

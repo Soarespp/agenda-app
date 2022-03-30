@@ -21,6 +21,7 @@ const CadCompromissoForm = (props) => {
             setType('U');
             const compInterno = compromissos.find(comp => comp.id === parseInt(params.compromissoId)) || {};
             formRef.current.setData(compInterno)
+            // console.log('formref', formRef.current.getFieldValue('importante'))
         }
         else {
             setType('I');
@@ -28,37 +29,19 @@ const CadCompromissoForm = (props) => {
     }, [compromissos, params.compromissoId])
 
     async function handleSubmit(data, { reset }) {
-        // if (data.name === "") {
-        //     formRef.current.setFieldError('name', 'O nome e obrigatorio');
-        //     formRef.current.setFieldError('andress.cidade', 'A cidade e obrigatorio');
-        //     alert("Nome está vazio.");
-        // }
-        // if (data.andress.cidade === "") {
-        //     formRef.current.setFieldError('andress.cidade', 'A cidade e obrigatorio');
-        // }
-        // var imp = document.getElementById("subscribeNews");
-        formRef.current.setData({
-            importante: document.getElementById("subscribeNews"),
-        })
         try {
             const schema = Yup.object().shape({
                 compromisso: Yup.string().required('Nome Compromisso obrigatorio'),
                 nameLocal: Yup.string().required('O nome do local e obrigatorio'),
-                // data: Yup.string().required('O nome e obrigatorio'),
-                // email: Yup.string()
-                //     .email('digite um e-mail valido')
-                //     .required('O e-mail e obrigatorio'),
-                // address: Yup.object().shape({
-                //     city: Yup.string()
-                //         .min(3, 'No minimo 3 letras')
-                //         .required('A cidade e obrigatoria')
-                // })
             });
 
             await schema.validate(data, {
                 abortEarly: false,
             })
-            console.log('insert dados', data, data.importante)
+            data.importante = document.getElementById("checkedImportante").checked
+            data.especial = document.getElementById("checkedEspecial").checked
+            data.semlocal = document.getElementById("checkedSemLocal").checked
+
             if (data.andress.rua === '') {
                 data.andress = {
                     cep: '88052-600',
@@ -70,15 +53,15 @@ const CadCompromissoForm = (props) => {
                 }
             }
             if (type === 'I') {
-                var maxID = await getNewId(compromissos) && 0;
-                formRef.current.setFieldValue('id', maxID);
+                var maxID = await getNewId(compromissos);
+                data.id = maxID + 1;
                 props.insertCompromisso(data);
             }
             if (type === 'U') {
                 data.id = parseInt(params.compromissoId);
                 props.updateCompromisso(data);
             }
-
+            setType('U');
             // reset();
             alert('Salvo com sucesso')
 
@@ -105,8 +88,9 @@ const CadCompromissoForm = (props) => {
                     Compromisso:<Input name="compromisso" />
                     Tipo:<Input name="tipo" />
                     Nome Local:<Input name="nameLocal" />
-                    Importante:<Input type="checkbox" id="subscribeNews" name="importante" />
-                    Especial:<Input type="checkbox" id="subscribeNews" name="especial" />
+                    Importante:<Input type="checkbox" id="checkedImportante" name="importante" defaultChecked={(formRef.current !== null) ? formRef.current.getFieldValue('importante') : false} />
+                    Especial:<Input type="checkbox" id="checkedEspecial" name="especial" defaultChecked={(formRef.current !== null) ? formRef.current.getFieldValue('especial') : false} />
+                    Sem Local:<Input type="checkbox" id="checkedSemLocal" name="semlocal" defaultChecked={(formRef.current !== null) ? formRef.current.getFieldValue('semlocal') : false} />
                     <label for="subscribeNews">Subscribe to newsletter?</label>
                     dia:<Input
                         type="datetime-local"

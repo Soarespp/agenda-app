@@ -17,7 +17,6 @@ const ListaCompromissos = (props) => {
     }, [especial])
 
     useEffect(() => {
-
         var DadosFilter;
         if (!filterEspecial) {
             DadosFilter = lstCompromissos.filter(dados => (!dados.especial))
@@ -25,14 +24,14 @@ const ListaCompromissos = (props) => {
             DadosFilter = lstCompromissos;
         }
         setFilterEspecial(especial)
+        // setDados(DadosFilter.filter(e => new Date(e.dataEvento) >= new Date()))
         setDados(DadosFilter)
-        dados.sort((a, b) => {
-            return new Date(a.data) - new Date(b.data) || a.name
-        });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [compromissos, especial])
 
-
+    dados.sort((a, b) => {
+        return new Date(a.dataEvento) - new Date(b.dataEvento) || a.name
+    });
     return (
         <div>
             <div className="ListaCompromissos">

@@ -49,3 +49,27 @@
     grid-row-start: 4;
     grid-row-end: 5;
 }
+
+.CardCompromissos.importante{
+    border: 3px groove rgb(202, 195, 88);
+}
+
+.CardCompromissos.importante .ContainerDados{
+    border: 3px groove rgb(202, 195, 88);  
+}
+.CardCompromissos.importante .ContainerDados .Dados-evento{
+    background-color: #EF7674;
+    
+}
+.CardCompromissos.importante .ContainerDados .Dados-config{
+    background-color: #dd7574;
+}
+
+.CardCompromissos.importante .ContainerDados .Header{
+    background-color: #EC5766;
+}
+
+.CardCompromissos.importante .DtCard{
+    background-color: #EC5766;
+    border: 3px groove rgb(202, 195, 88);
+}

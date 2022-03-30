@@ -22,7 +22,8 @@ const getDayDesc = (dt) => {
 const CardCompromissos = (props) => {
     const { compromisso } = props;
     return (
-        <div className='CardCompromissos'>
+        // <div className='CardCompromissos'>
+        <div className={`CardCompromissos ${(compromisso.importante) ? 'importante' : null}`}>
             <div className='DtCard'>
                 <div style={{ fontSize: '70px' }}><b>{String(new Date(compromisso.dataEvento).getDate())}</b></div>
                 <div style={{}}>{getMonthDesc(compromisso.dataEvento)}.

@@ -10,7 +10,9 @@ const newCompromisso = {
     data: '',
     local: '',
     tipo: '',
-    importante: false
+    importante: false,
+    semlocal: true,
+    especial: false
 }
 
 const CadCompromisso = (props) => {
